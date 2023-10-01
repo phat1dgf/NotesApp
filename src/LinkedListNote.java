@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.Scanner;
 
 class LinkedListNote {
@@ -69,7 +68,7 @@ class LinkedListNote {
     public void update(String nameNote) {
         isEmpty();
         Note cur = head;
-        while (cur != null) {
+        while (cur.next != null) {
             if (nameNote.equals(cur.getNoteName())) {
                 break;
             }
@@ -83,7 +82,7 @@ class LinkedListNote {
         Note cur = head;
         Note newCur = head;
         isEmpty();
-        while (cur != null) {
+        while (cur.next != null) {
             if (nameNote.equals(cur.getNoteName())) {
                 break;
             }
@@ -107,48 +106,47 @@ class LinkedListNote {
     }
 
 
-    File file = new File("C:\\Users\\Phat\\Documents\\Java\\NoteApp\\save.txt");
-
-    public void save() {
-        try {
-            Note cur = head;
-            OutputStream os = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(os);
-            while (cur != null) {
-                oos.writeObject(cur);
-                cur = cur.next;
-            }
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void read() {
-        try {
-            InputStream is = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(is);
-            Note savedNote = null;
-            while (true) {
-                savedNote = (Note) ois.readObject();
-                if (savedNote != null) {
-                    Note newNote = new Note(savedNote.getNoteName(), savedNote.getNoteContent());
-                    if (head == null) {
-                        head = newNote;
-                    } else {
-                        Note cur = head;
-                        while (cur.next != null) {
-                            cur = cur.next;
-                        }
-                        cur.next = newNote;
-                    }
-                }
-                if (savedNote == null) break;
-            }
-            ois.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-    }
+//    File file = new File("C:\\Users\\Phat\\Documents\\Java\\NoteApp\\save.txt");
+//
+//    public void save() {
+//        try {
+//            Note cur = head;
+//            OutputStream os = new FileOutputStream(file);
+//            ObjectOutputStream oos = new ObjectOutputStream(os);
+//            while (cur != null) {
+//                oos.writeObject(cur);
+//                cur = cur.next;
+//            }
+//            oos.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void read() {
+//        try {
+//            InputStream is = new FileInputStream(file);
+//            ObjectInputStream ois = new ObjectInputStream(is);
+//            Note savedNote = null;
+//            while (true) {
+//                savedNote = (Note) ois.readObject();
+//                if (savedNote != null) {
+//                    Note newNote = new Note(savedNote.getNoteName(), savedNote.getNoteContent());
+//                    if (head == null) {
+//                        head = newNote;
+//                    } else {
+//                        Note cur = head;
+//                        while (cur.next != null) {
+//                            cur = cur.next;
+//                        }
+//                        cur.next = newNote;
+//                    }
+//                }
+//                if (savedNote == null) break;
+//            }
+//            ois.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
